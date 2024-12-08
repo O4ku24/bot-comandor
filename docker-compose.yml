@@ -1,0 +1,15 @@
+services:
+  web:
+    build: ./api_app
+    restart: always
+    ports:
+      - "80:80"
+
+  python_app:
+    build: ./bot
+    restart: always
+    ports:
+      - "5001:5001"
+
+volumes:
+  web_data:
