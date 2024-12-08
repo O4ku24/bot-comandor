@@ -4,12 +4,14 @@ services:
     restart: always
     ports:
       - "80:80"
+    depends_on:
+      - python_app
 
   python_app:
     build: ./bot
     restart: always
     ports:
-      - "5001:5001"
+      - "5050:5050"
 
 volumes:
   web_data:
