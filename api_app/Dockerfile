@@ -1,9 +1,11 @@
 FROM python:3.12-slim
 COPY requirements.txt .
+COPY main.py .
+COPY backend.py .
+COPY database.py .
+COPY schemas.py .
+COPY templates .
 RUN pip install -r requirements.txt
-COPY main.py /api_app.py
-COPY schemas.py /api_app.py
-COPY backend .
-WORKDIR /api_app
+WORKDIR /
 CMD ["python", "main.py"]
 EXPOSE 8080

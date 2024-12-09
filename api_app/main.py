@@ -1,14 +1,22 @@
 import uvicorn
 from fastapi import FastAPI, Request
 import pandas as pd
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 
-from backend.backend import get_data_db_period, seve_data_db, get_all_data
-from api_app.schemas import Sale, DatePeriod
+from backend import get_data_db_period, seve_data_db, get_all_data
+from schemas import Sale, DatePeriod
 
 app = FastAPI(
     title="Bot Saler",
     version="0.0.1"
 )
+
+templates = Jinja2Templates(directory="templates")
+
+@app.get('/')
+def index(request:Request):
+    return templates.TemplateResponse(request=request, name='index.html')
 
 @app.get('/sales/')
 def get_all(request:Request):
@@ -45,10 +53,10 @@ def get_period(request:Request, period:DatePeriod):
 
 @app.post('/add/')
 def add_sales(request:Request, sele:Sale):
-
+    print('add_sales')
     status = seve_data_db(sele.title, sele.price)
     return status
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=5050)
+    uvicorn.run(app, host='localhost', port=5050)

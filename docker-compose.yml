@@ -1,17 +1,16 @@
 services:
-  web:
+  api:
     build: ./api_app
     restart: always
     ports:
       - "80:80"
-    depends_on:
-      - python_app
+      - "443:443"
 
-  python_app:
+  bot:
     build: ./bot
     restart: always
     ports:
-      - "5050:5050"
+      - "5050"
 
 volumes:
   web_data:

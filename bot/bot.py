@@ -1,13 +1,9 @@
 import telebot
 from telebot import types
-from time import sleep
 import datetime
-from ..api_app.backend.backend import seve_data_db, get_data_db_period
+import requests
 
                     
-    
-
-
 bot = telebot.TeleBot('6105146346:AAFcm1CVVly8GllMD_KXDBw0iF20x6RiW8g')
 
 sales:dict = {}
@@ -19,10 +15,7 @@ def start(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     keyboard.add(types.KeyboardButton("Внести данные о продажах"))
     keyboard.add(types.KeyboardButton("Получить отчет о продажах за период"))
-
     bot.send_message(message.chat.id, f'Привет {message.from_user.first_name}! \nВыбери действие: ', reply_markup=keyboard) 
-    sleep(5*60)
-    start(message)
 
 
 @bot.message_handler(content_types='text')
@@ -36,8 +29,11 @@ def choose(message):
     if message.text == 'Сохранить':
         title:str = sales['title']
         price:float = sales['price']
-        seve_data_db(title, price)
-        bot.send_message(message.chat.id, 'Позиция добавлена')
+        new_sale = 'http://localhost:5050/add/'
+        responce = requests.post(url = new_sale, json={'title' : title, 'price' : price})
+        if responce.status_code == 200:
+            print(responce)
+            bot.send_message(message.chat.id, 'Позиция добавлена')
         start(message) 
 
     if message.text == 'Отмена':
@@ -56,11 +52,13 @@ def get_and_send_data(message):
     start_end:str = (message.text).split('/') 
     start_period = start_end[0]
     end_period = start_end[1]
-    file = get_data_db_period(start_period, end_period)
-            
+    url = 'http://localhost:5050/sales/'
+    responce = requests.post(url=url, json={"start": start_period, "end": end_period})
+    if responce.status_code == 200:
+        file = open('result.xlsx', 'rb')
     bot.send_message(message.chat.id, 'Данные выгружены.')
     bot.send_message(chat_id, f'Выбранный период:\n{start_period}\n{end_period}')
-    bot.send_document(message.chat.id, file['file'])
+    bot.send_document(message.chat.id, file)
     start(message) 
 
 

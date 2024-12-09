@@ -1,9 +1,10 @@
 
-from backend.database import Connect
+from database import Connect
 import datetime
 import pandas as pd
 
 def seve_data_db(title:str, price:float):
+    print('seve_date_db')
     date = round(datetime.datetime.now().timestamp())
     connect = Connect('database.db')
     connect.insert(title, price, date)
