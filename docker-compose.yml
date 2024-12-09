@@ -3,8 +3,7 @@ services:
     build: ./api_app
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080"
 
   bot:
     build: ./bot
