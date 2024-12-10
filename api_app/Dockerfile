@@ -11,4 +11,4 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN pip install -r requirements.txt
 WORKDIR /
 CMD ["python", "main.py"]
-EXPOSE 8080
+EXPOSE 8000
