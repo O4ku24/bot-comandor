@@ -4,4 +4,4 @@ RUN pip install -r requirements.txt
 COPY bot.py /bot/bot.py
 WORKDIR /bot
 CMD ["python", "bot.py"]
-EXPOSE 5050
+EXPOSE 5000
