@@ -1,3 +1,7 @@
+FROM nginx:latest
+COPY default /etc/nginx/sites-available/default
+RUN apt-get -y update && apt-get -y install nginx
+
 FROM python:3.12-slim
 COPY requirements.txt .
 COPY main.py .
