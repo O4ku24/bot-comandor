@@ -10,7 +10,7 @@ COPY schemas.py .
 COPY templates .
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN pip install -r requirements.txt
-RUN docker run --name nginx01 -p 80:80 -d nginx
+RUN docker run --name nginx01 -p 8000 -d nginx
 WORKDIR /
 CMD ["python", "main.py"]
 EXPOSE 8000
