@@ -3,13 +3,24 @@ services:
     build: ./api_app
     restart: always
     ports:
-      - "8080"
+      - "8000:8000"
+    networks:
+      - my-network
 
   bot:
     build: ./bot
     restart: always
     ports:
       - "5050"
+    depends_on:
+      - api
+
+    networks:
+      - my-network
 
 volumes:
   web_data:
+
+networks:
+  my-network:
+    driver: bridge
