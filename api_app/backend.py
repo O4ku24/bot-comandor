@@ -1,5 +1,5 @@
 
-from database import Connect
+from .database import Connect
 import datetime
 import pandas as pd
 
