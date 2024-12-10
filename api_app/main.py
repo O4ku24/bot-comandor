@@ -1,7 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Request
 import pandas as pd
-from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from backend import get_data_db_period, seve_data_db, get_all_data
