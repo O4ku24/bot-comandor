@@ -29,7 +29,7 @@ def choose(message):
     if message.text == 'Сохранить':
         title:str = sales['title']
         price:float = sales['price']
-        api = 'http://localhost:2345/add/'
+        api = 'http://localhost:5454/add/'
         responce = requests.post(url = api, json={'title' : title, 'price' : price})
         if responce.status_code == 200:
             print(responce)
@@ -52,7 +52,7 @@ def get_and_send_data(message):
     start_end:str = (message.text).split('/') 
     start_period = start_end[0]
     end_period = start_end[1]
-    api = 'http://localhost:2345/sales/'
+    api = 'http://localhost:5454/sales/'
     responce = requests.post(url=api, json={"start": start_period, "end": end_period})
     if responce.status_code == 200:
         file = open('result.xlsx', 'rb')
