@@ -3,8 +3,8 @@ from fastapi import FastAPI, Request
 import pandas as pd
 from fastapi.templating import Jinja2Templates
 
-from api_app.backend import get_data_db_period, seve_data_db, get_all_data
-from api_app.schemas import Sale, DatePeriod
+from backend.backend import get_data_db_period, seve_data_db, get_all_data
+from backend.schemas import Sale, DatePeriod
 
 app = FastAPI(
     title="Bot Saler",
