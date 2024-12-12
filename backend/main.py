@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from fastapi.templating import Jinja2Templates
 
-from .backend.backend import get_data_db_period, seve_data_db, get_all_data
-from .backend.schemas import Sale, DatePeriod
+from backend.backend import get_data_db_period, seve_data_db, get_all_data
+from backend.schemas import Sale, DatePeriod
 
 app = FastAPI(
     title="Bot Saler",
@@ -72,8 +72,7 @@ app.add_middleware(
 
 
 if __name__ == '__main__':
-<<<<<<<< HEAD:backend/main.py
+
     uvicorn.run(app, host='0.0.0.0', port=8000)
-========
-    uvicorn.run(app, host='localhost', port=8000)
->>>>>>>> 5f55e755dfcbeb0ff5806aa207ac19bd7da7254a:main.py
+
+
