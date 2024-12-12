@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from fastapi.templating import Jinja2Templates
 
@@ -56,6 +57,19 @@ def add_sales(request:Request, sele:Sale):
     status = seve_data_db(sele.title, sele.price)
     return status
 
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=[
+        "http://localhost:5454",
+
+    ],
+    allow_credentials = True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+
+)
+
+
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='localhost', port=2345)
+    uvicorn.run(app, host='0.0.0.0', port=8000)
