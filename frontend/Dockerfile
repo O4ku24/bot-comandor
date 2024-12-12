@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:stable-alpine-slim
 
 COPY --from=build index.html /usr/share/nginx/html
 COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
