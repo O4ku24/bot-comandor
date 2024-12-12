@@ -1,4 +1,4 @@
-FROM nginx:slatest
+FROM nginx:latest
 
 COPY --from=build index.html /usr/share/nginx/html
 COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
