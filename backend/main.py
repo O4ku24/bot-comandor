@@ -61,6 +61,8 @@ app.add_middleware(
     CORSMiddleware, 
     allow_origins=[
         "http://localhost:5454",
+        "http://94.228.115.222",
+
 
     ],
     allow_credentials = True,
@@ -73,6 +75,6 @@ app.add_middleware(
 
 if __name__ == '__main__':
 
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='localhost', port=8000)
 
 

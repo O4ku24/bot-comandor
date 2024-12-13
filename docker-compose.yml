@@ -17,8 +17,7 @@ services:
     build:
       context: ./backend
     restart: always
-    ports:
-      - "3456"
+
     networks:
       - my-network
 
@@ -30,8 +29,7 @@ services:
     restart: always
     networks:
       - my-network
-    ports:
-      - "8000"
+
       
 
 
