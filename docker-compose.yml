@@ -31,6 +31,13 @@ services:
     networks:
       - my-network
 
+  bot:
+    build:
+      context: ./bot
+    restart: always
+    network:
+      - my-network
+
       
 
 
