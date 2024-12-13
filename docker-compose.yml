@@ -1,6 +1,7 @@
 services:
+
   nginx:
-    image: nginx:stable-alpine-slim
+    image: nginx:latest
     ports:
       - "80:80"
     volumes:
@@ -10,16 +11,20 @@ services:
       - front
     networks:
       - my-network
+
+
   api:
     build:
       context: ./backend
     restart: always
     ports:
-      - "3000"
+      - "3456"
     networks:
       - my-network
+
+
       
-  frontend:
+  front:
     build:
       context: ./frontend
     restart: always

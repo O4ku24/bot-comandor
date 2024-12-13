@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from fastapi.templating import Jinja2Templates
 
-from backend.backend import get_data_db_period, seve_data_db, get_all_data
-from backend.schemas import Sale, DatePeriod
+from backend import get_data_db_period, seve_data_db, get_all_data
+from schemas import Sale, DatePeriod
 
 app = FastAPI(
     title="Bot Saler",
