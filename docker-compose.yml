@@ -18,7 +18,7 @@ services:
       context: ./backend
     restart: always
     ports:
-      - "8000:8000"
+      - "5454"
     networks:
       - my-network
 
