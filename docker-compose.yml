@@ -9,6 +9,7 @@ services:
     depends_on:
       - api
       - front
+
     networks:
       - my-network
 
@@ -17,8 +18,7 @@ services:
     build:
       context: ./backend
     restart: always
-    ports:
-      - "5454"
+
     networks:
       - my-network
 
@@ -31,12 +31,7 @@ services:
     networks:
       - my-network
 
-  bot:
-    build:
-      context: ./bot
-    restart: always
-    network:
-      - my-network
+
 
       
 
