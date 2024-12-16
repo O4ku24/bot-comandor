@@ -1,36 +1,37 @@
+
+
 services:
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - api
-      - front
-
-    networks:
-      - my-network
 
 
   api:
     build:
       context: ./backend
+
     restart: always
 
     networks:
       - my-network
-
-
       
+
+  
   front:
     build:
       context: ./frontend
+
     restart: always
+
     networks:
       - my-network
 
+    ports:
+      - 5454:5454
+
+  bot:
+    build:
+      context: ./bot
+    restart: always
+    networks:
+      - my-network
 
 
       
